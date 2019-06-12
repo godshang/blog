@@ -9,7 +9,7 @@ tags:
 
 在上文中，我们谈到 JpaRepository 继承自 gingAndSortingRepository 和 QueryByExampleExecutor ，它的继承关系如下图所示：
 
-![](/../img/2018-02-13/JpaRepositry.png)
+![](/img/2018-02-13/JpaRepositry.png)
 
 `PagingAndSortingRepository` 中提供了 findAll 方法，处理分页和排序的操作。
 
@@ -99,7 +99,7 @@ public interface Pageable {
 
 Spring JPA 中提供了一个默认的 `Pageable` 实现 `PageRequest` ，它的继承关系如下图所示：
 
-![](/../img/2018-02-13/PageRequest.png)
+![](/img/2018-02-13/PageRequest.png)
 
 `AbstractPageRequest` 是一个 `Pageable` 的抽象类实现，从构造函数中我们可以看到，页码是从第 0 页开始的：
 

@@ -8,7 +8,7 @@ tags:
 
 UINavigationController是iOS中最常用的多视图控制器之一，主要管理有层级关系的控制器。
 
-![](/../img/2016-08-10/navigation_interface_2x.png)
+![](/img/2016-08-10/navigation_interface_2x.png)
 
 ## 创建UINavigationController
 

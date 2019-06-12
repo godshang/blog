@@ -21,13 +21,13 @@ Kafka是一种分布式的，基于发布/订阅的消息系统。主要设计�
 
 Kafka使用Gradle进行编译和构建，因此首先需要安装Gradle。从官网下载最新的Gradle，解压至一个目录，然后创建一个GRADLE_HOME环境变量指向这个目录，再将%GRADLE_HOME%\bin加到PATH环境变量中，Gradle就安装配置好了。
 
-![](/../img/2017-12-28/1.png)
+![](/img/2017-12-28/1.png)
 
 ## Kafka源码导入
 
 在 Kafka 目录中执行 `gradle idea` 生成 IDEA 工程文件。如果是第一次运行，可能会花费一些时间去下载必要的jar包，在等待了一段时间之后，终于看到了BUILD SUCCESSFUL的字样表示项目工程文件生成成功。
 
-![](/../img/2017-12-28/2.png)
+![](/img/2017-12-28/2.png)
 
 之后就可以使用 IDEA 打开工程了。
 
@@ -57,7 +57,7 @@ zookeeper.connection.timeout.ms=6000
 
 在 IDEA 中点击 `Edit Configuration`，按照如下配置
 
-![](/../img/2017-12-28/3.png)
+![](/img/2017-12-28/3.png)
 
 ## log4j.properties文件路径设置
 
