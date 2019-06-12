@@ -1,0 +1,9 @@
+---
+title: '可乐'
+layout: post
+categories: 生活
+tags:
+    - 
+---
+
+<embed src="http://static.video.qq.com/TPout.swf?vid=o0015to0oye&auto=0" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>

@@ -1,0 +1,130 @@
+---
+title: '使用Kaptcha生成验证码'
+layout: post
+categories: 技术
+tags:
+    - Java
+---
+
+在用户登陆、注册、或找回密码等场景下，经常会遇到填写验证码的情况。Kaptcha就是一个简单、易用的验证码生成的Java库。它的用法十分简单，简单几个步骤就可以在实际项目中使用起来。下面我们来具体看看。
+
+首先添加maven的pom依赖，目前Kaptcha的版本到了2.3.2。
+
+```
+<dependency>
+    <groupId>com.google.code.kaptcha</groupId>
+    <artifactId>kaptcha</artifactId>
+    <version>2.3.2</version>
+</dependency>
+```
+
+使用Kaptcha时需要在web.xml中配置servlet，这时Kaptcha的所有配置都是通过servlet的init-param来完成的。
+
+```
+<servlet>
+    <servlet-name>Kaptcha</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+    <init-param>  
+        <param-name>kaptcha.border</param-name>  
+        <param-value>no</param-value>  
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.border.color</param-name>  
+        <param-value>105,179,90</param-value>  
+    </init-param>       
+    <init-param>  
+        <param-name>kaptcha.textproducer.font.color</param-name>  
+        <param-value>black</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>kaptcha.image.width</param-name>  
+        <param-value>84</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>kaptcha.image.height</param-name>  
+        <param-value>28</param-value>  
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.noise.impl</param-name>  
+        <param-value>com.google.code.kaptcha.impl.NoNoise</param-value> 
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.noise.color</param-name>  
+        <param-value>black</param-value>  
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.textproducer.char.string</param-name>  
+        <param-value>ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789</param-value>  
+    </init-param>
+    <init-param>
+        <param-name>kaptcha.obscurificator.impl</param-name>
+        <param-value>com.google.code.kaptcha.impl.ShadowGimpy</param-value>
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.textproducer.font.size</param-name>  
+        <param-value>24</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>kaptcha.session.key</param-name>  
+        <param-value>validateCode</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>kaptcha.textproducer.char.length</param-name>  
+        <param-value>4</param-value>  
+    </init-param>
+    <init-param>  
+        <param-name>kaptcha.textproducer.font.names</param-name>  
+        <param-value>Times New Roman</param-value>  
+    </init-param>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Kaptcha</servlet-name>
+    <url-pattern>/validateCode/*</url-pattern>
+</servlet-mapping>
+```
+
+Kaptcha可供配置的项十分丰富，具体可见下表：
+
+<table class="wikitable"><tbody><tr><td style="border: 1px solid #ccc; padding: 5px;"> <strong>Constant</strong> </td><td style="border: 1px solid #ccc; padding: 5px;"> <strong>Description</strong> </td><td style="border: 1px solid #ccc; padding: 5px;"> <strong>Default</strong> </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.border </td><td style="border: 1px solid #ccc; padding: 5px;"> Border around kaptcha. Legal values are yes or no. </td><td style="border: 1px solid #ccc; padding: 5px;"> yes </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.border.color </td><td style="border: 1px solid #ccc; padding: 5px;"> Color of the border. Legal values are r,g,b (and optional alpha) or white,black,blue. </td><td style="border: 1px solid #ccc; padding: 5px;"> black </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.border.thickness </td><td style="border: 1px solid #ccc; padding: 5px;"> Thickness of the border around kaptcha. Legal values are &gt; 0. </td><td style="border: 1px solid #ccc; padding: 5px;"> 1 </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.image.width </td><td style="border: 1px solid #ccc; padding: 5px;"> Width in pixels of the kaptcha image. </td><td style="border: 1px solid #ccc; padding: 5px;"> 200 </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.image.height </td><td style="border: 1px solid #ccc; padding: 5px;"> Height in pixels of the kaptcha image. </td><td style="border: 1px solid #ccc; padding: 5px;"> 50 </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.producer.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The image producer. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.impl.DefaultKaptcha </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The text producer. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.text.impl.DefaultTextCreator </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.char.string </td><td style="border: 1px solid #ccc; padding: 5px;"> The characters that will create the kaptcha. </td><td style="border: 1px solid #ccc; padding: 5px;"> abcde2345678gfynmnpwx </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.char.length </td><td style="border: 1px solid #ccc; padding: 5px;"> The number of characters to display. </td><td style="border: 1px solid #ccc; padding: 5px;"> 5 </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.font.names </td><td style="border: 1px solid #ccc; padding: 5px;"> A list of comma separated font names. </td><td style="border: 1px solid #ccc; padding: 5px;"> Arial, Courier </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.font.size </td><td style="border: 1px solid #ccc; padding: 5px;"> The size of the font to use. </td><td style="border: 1px solid #ccc; padding: 5px;"> 40px. </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.font.color </td><td style="border: 1px solid #ccc; padding: 5px;"> The color to use for the font. Legal values are r,g,b. </td><td style="border: 1px solid #ccc; padding: 5px;"> black </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.textproducer.char.space </td><td style="border: 1px solid #ccc; padding: 5px;"> The space between the characters </td><td style="border: 1px solid #ccc; padding: 5px;"> 2 </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.noise.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The noise producer. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.impl.DefaultNoise </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.noise.color </td><td style="border: 1px solid #ccc; padding: 5px;"> The noise color. Legal values are r,g,b. </td><td style="border: 1px solid #ccc; padding: 5px;"> black </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.obscurificator.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The obscurificator implementation. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.impl.WaterRipple </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.background.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The background implementation. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.impl.DefaultBackground </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.background.clear.from </td><td style="border: 1px solid #ccc; padding: 5px;"> Starting background color. Legal values are r,g,b. </td><td style="border: 1px solid #ccc; padding: 5px;"> light grey </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.background.clear.to </td><td style="border: 1px solid #ccc; padding: 5px;"> Ending background color. Legal values are r,g,b. </td><td style="border: 1px solid #ccc; padding: 5px;"> white </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.word.impl </td><td style="border: 1px solid #ccc; padding: 5px;"> The word renderer implementation. </td><td style="border: 1px solid #ccc; padding: 5px;"> com.google.code.kaptcha.text.impl.DefaultWordRenderer </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.session.key </td><td style="border: 1px solid #ccc; padding: 5px;"> The value for the kaptcha is generated and is put into the HttpSession. This is the key value for that item in the session. </td><td style="border: 1px solid #ccc; padding: 5px;"> KAPTCHA_SESSION_KEY </td></tr> <tr><td style="border: 1px solid #ccc; padding: 5px;"> kaptcha.session.date </td><td style="border: 1px solid #ccc; padding: 5px;"> The date the kaptcha is generated is put into the HttpSession. This is the key value for that item in the session. </td><td style="border: 1px solid #ccc; padding: 5px;"> KAPTCHA_SESSION_DATE </td></tr> </tbody></table>
+
+
+在这些配置项中，kaptcha.session.key项是验证码文字在session中的key，如果不添加这个配置项，那么默认的key是com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY。
+
+在页面中可以通过servlet配置的url映射直接使用：
+
+```
+<form action="submit.do" method="post">
+    <input type="text" name="kaptcha" value="" />
+    <img id="validateCodeImg" src="<%=request.getContextPath()%>/validateCode/<%=System.currentTimeMillis()%>?code=checkcode&nonce=<%=System.currentTimeMillis()%>" />
+    <a href="javascript:changeValidateCode();">换一张</a>
+    <br />
+    <input type="submit" />
+</form>
+```
+
+img标签的src属性，指向了我们在web.xml中配置的url。为了避免浏览器的缓存，可以加上时间戳。也可以加上一段javascript代码，实现点击时切换验证码图片。
+
+```
+<script type="text/javascript">
+function changeValidateCode(){
+    var img = document.getElementById('validateCodeImg');
+    var src = img.getAttribute('src');
+    img.src = '<%=request.getContextPath()%>/validateCode/'+(new Date().getTime())+'?code=checkcode&nonce='+(new Date().getTime());
+}
+</script>
+```
+
+在响应form提交action的后端代码中，可以从session中取出验证码的文字，结合form提交过来的用户填写的验证码内容进行验证。
+
+```
+//从session中取出servlet生成的验证码text值
+String kaptchaExpected = (String) request.getSession().getAttribute("validateCode");
+//获取用户页面输入的验证码
+String kaptchaReceived = request.getParameter("kaptcha");
+//校验验证码是否正确
+if (kaptchaReceived == null || !kaptchaReceived.equalsIgnoreCase(kaptchaExpected)){
+    setError("kaptcha", "Invalid validation code.");
+}
+```
+
+通过以上简单的几步，就实现了添加验证码的功能。
