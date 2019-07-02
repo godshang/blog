@@ -13,7 +13,7 @@ tags:
 
 JPA 创建查询时基于以下的方法命名规则：
 
-![](/img/2018-02-14/supported_keywords_inside_method_names.png)
+![](../img/2018-02-14/supported_keywords_inside_method_names.png)
 
 # 使用 @NamedQuery 注解
 

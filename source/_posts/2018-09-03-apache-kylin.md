@@ -9,7 +9,7 @@ tags:
 
 Apache Kylin是一个开源的分布式OLAP引擎，提供基于Hadoop/Spark之上的SQL查询接口以及多维分析能力，支持超大规模的数据集，能够在亚秒内查询巨大的Hive表。Apache Kylin最初由eBay开发并贡献至开源社区。
 
-![](/img/2018-09-03/kylin_diagram.png)
+![](../img/2018-09-03/kylin_diagram.png)
 
 ***
 
