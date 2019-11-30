@@ -8,7 +8,9 @@ comments: false
 - Elasticsearch in Action
 - Expert One-on-One J2EE Development withouth EJB
 - Netty in Action
-- 实现领域驱动设计 (ing)
+- 实现领域驱动设计
+- A gentle guide to asynchronous programming with Eclipse Vert.x for Java Developers
+- Building Reactive Microservcies in Java
 
 ## 2018年阅读书单
 
