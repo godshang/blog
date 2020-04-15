@@ -1,9 +1,0 @@
----
-title: '不来也不去'
-layout: post
-categories: 生活
-tags:
-    - 
----
-
-不作不死，早死晚死都是死。
