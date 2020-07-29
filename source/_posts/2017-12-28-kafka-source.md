@@ -61,6 +61,6 @@ zookeeper.connection.timeout.ms=6000
 
 ## log4j.properties文件路径设置
 
-启动kafka server很奇怪，可能会抱一个log4j.properties文件找不到的错误。
+启动kafka server很奇怪，可能会报一个log4j.properties文件找不到的错误。
 
 解决方法是把log4j.properties放置到src/main/scala路径下。
