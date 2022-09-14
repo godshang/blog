@@ -74,7 +74,7 @@ deploy:
   branch: master
 
 excerpt:
-  depth: 10
+  depth: 2
   excerpt_excludes: []
   more_excludes: []
   hideWholePostExcerpts: true
