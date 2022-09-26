@@ -9,11 +9,11 @@ tags:
 
 # Instrumentation
 
-`Instrumentation`是JDK 1.6的一个新特性，通过`java.lang.instroment`包可以实现一个独立于应用程序的Agent程序，能够替换和修改类的定义。有了这样的功能，开发者可以实现灵活的运行时虚拟机监控和Java类增加，实际上提供了一种虚拟机级别的AOP实现方式。
+`Instrumentation`是JDK 1.5的一个新特性，通过`java.lang.instrument`包可以实现一个独立于应用程序的Agent程序，能够替换和修改类的定义。有了这样的功能，开发者可以实现灵活的运行时虚拟机监控和Java类增强，实际上提供了一种虚拟机级别的AOP实现方式。
 
 # Java Agent Demo
 
-下面介绍通过`java.lang.instroment`编写Agent的一般方法。
+下面介绍通过`java.lang.instrument`编写Agent的一般方法。
 
 ## 实现Agent启动方法
 
@@ -61,7 +61,7 @@ public class Agent {
 ```java
 public class AppInitTramsformer implements ClassFileTransformer {
 
-    private static final String INJECTED_CLASS = "com.iqiyi.mbd.qiyihao.agent";
+    private static final String INJECTED_CLASS = "com.github.godshang.agent.Agent";
 
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
@@ -99,8 +99,8 @@ public class AppInitTramsformer implements ClassFileTransformer {
 
 ```
 Manifest-Version: 1.0
-Premain-Class: com.iqiyi.mbd.qiyihao.agent.Agent
-Agent-Class: com.iqiyi.mbd.qiyihao.agent.Agent
+Premain-Class: com.github.godshang.agent.Agent
+Agent-Class: com.github.godshang.agent.Agent
 Can-Redefine-Classes: true
 Can-Retransform-Classes: true
 ```
@@ -122,8 +122,8 @@ Can-Retransform-Classes: true
             </manifest>
             <manifestEntries>
                 <Menifest-Version>1.0</Menifest-Version>
-                <Premain-Class>com.iqiyi.mbd.qiyihao.agent.Agent</Premain-Class>
-                <Agent-Class>com.iqiyi.mbd.qiyihao.agent.Agent</Agent-Class>
+                <Premain-Class>com.github.godshang.agent.Agent</Premain-Class>
+                <Agent-Class>com.github.godshang.agent.Agent</Agent-Class>
                 <Can-Redefine-Classes>true</Can-Redefine-Classes>
                 <Can-Retransform-Classes>true</Can-Retransform-Classes>
             </manifestEntries>
