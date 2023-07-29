@@ -1,5 +1,5 @@
 ---
-title: '读书笔记-创新者的窘境'
+title: '《创新者的窘境》读书笔记'
 layout: post
 categories: 阅读
 toc: true
